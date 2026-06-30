@@ -1,6 +1,8 @@
 # os-agent-kit
 
-Bộ agent config và workflow templates được extract từ dự án **B2B Login to Access**, dùng để bootstrap Claude Code cho project mới trong team BSS.
+Bộ agent config và workflow templates được extract từ dự án **B2B Login to Access**, dùng để bootstrap AI agent cho project mới trong team BSS.
+
+Hỗ trợ đa nền tảng: **Claude Code** · **Gemini CLI** · **Codex**
 
 ---
 
@@ -27,16 +29,35 @@ git config core.hooksPath hooks
 
 ### 3. Đọc tài liệu theo thứ tự
 
-1. [`CLAUDE.md`](CLAUDE.md) — entry point, cách dùng repo này
-2. [`.claude/CLAUDE.md`](.claude/CLAUDE.md) — kiến trúc dự án và hard rules
-3. [`docs/README.md`](docs/README.md) — index toàn bộ docs
+| AI Tool | File cần đọc đầu tiên |
+|---------|----------------------|
+| Claude Code | [`CLAUDE.md`](CLAUDE.md) → [`.claude/CLAUDE.md`](.claude/CLAUDE.md) |
+| Gemini CLI | [`GEMINI.md`](GEMINI.md) (tự động include `.claude/CLAUDE.md`) |
+| Codex | [`AGENTS.md`](AGENTS.md) → [`references/codex-tools.md`](references/codex-tools.md) |
 
-### 4. Copy `.claude/` vào project mới
+Sau đó đọc [`docs/README.md`](docs/README.md) — index toàn bộ business & technical docs.
 
-Khi bắt đầu một project mới, copy toàn bộ `.claude/` vào root của project đó:
+### 4. Copy config vào project mới
 
+Khi bắt đầu một project mới, copy các file cần thiết theo tool đang dùng:
+
+**Claude Code:**
 ```bash
 cp -r os-agent-kit/.claude/ <your-project>/
+```
+
+**Gemini CLI:**
+```bash
+cp -r os-agent-kit/.claude/ <your-project>/
+cp os-agent-kit/GEMINI.md <your-project>/
+cp -r os-agent-kit/references/ <your-project>/
+```
+
+**Codex:**
+```bash
+cp -r os-agent-kit/.claude/ <your-project>/
+cp os-agent-kit/AGENTS.md <your-project>/
+cp -r os-agent-kit/references/ <your-project>/
 ```
 
 Sau đó cập nhật `.claude/CLAUDE.md` theo đúng kiến trúc của project mới.
@@ -52,9 +73,14 @@ os-agent-kit/
 │   ├── business/      ← User-facing features và business logic
 │   ├── technical/     ← Architecture và technical specs
 │   └── plans/         ← Feature plans đã viết sẵn
+├── references/        ← Tool mapping cho từng AI platform
+│   ├── gemini-tools.md   ← Claude Code → Gemini CLI tool names
+│   └── codex-tools.md    ← Claude Code → Codex tool names
 ├── templates/         ← Templates cho feature workflow
 ├── hooks/             ← Git hooks (cài bằng core.hooksPath)
 ├── CLAUDE.md          ← Entry point cho Claude Code
+├── GEMINI.md          ← Entry point cho Gemini CLI
+├── AGENTS.md          ← Entry point cho Codex
 └── TEAM_STATUS.md     ← Trạng thái làm việc của team
 ```
 
@@ -62,7 +88,13 @@ os-agent-kit/
 
 ## Links quan trọng
 
-- [`CLAUDE.md`](CLAUDE.md) — hướng dẫn sử dụng repo
-- [`TEAM_STATUS.md`](TEAM_STATUS.md) — ai đang làm gì
-- [`.claude/CLAUDE.md`](.claude/CLAUDE.md) — project context cho AI
-- [`hooks/README.md`](hooks/README.md) — cách cài git hooks
+| File | Mô tả |
+|------|-------|
+| [`CLAUDE.md`](CLAUDE.md) | Entry point cho Claude Code |
+| [`GEMINI.md`](GEMINI.md) | Entry point cho Gemini CLI |
+| [`AGENTS.md`](AGENTS.md) | Entry point cho Codex |
+| [`.claude/CLAUDE.md`](.claude/CLAUDE.md) | Project context cho AI (source of truth) |
+| [`references/gemini-tools.md`](references/gemini-tools.md) | Tool mapping cho Gemini CLI |
+| [`references/codex-tools.md`](references/codex-tools.md) | Tool mapping cho Codex |
+| [`TEAM_STATUS.md`](TEAM_STATUS.md) | Ai đang làm gì |
+| [`hooks/README.md`](hooks/README.md) | Cách cài git hooks |
