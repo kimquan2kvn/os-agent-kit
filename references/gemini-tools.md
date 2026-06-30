@@ -28,9 +28,25 @@ Gemini CLI không dùng `.claude/agents/` directory. Thay vào đó dùng `@` sy
 
 ### Cách invoke agent trong Gemini
 
-1. Mở `.claude/agents/<agent-name>.md` để đọc instructions
-2. Gọi `@generalist` với nội dung instructions đó làm prompt
-3. Gemini sẽ execute với đầy đủ context
+Các file trong `.claude/agents/` có phần frontmatter YAML ở đầu (giữa hai dòng `---`) — đây là metadata dành riêng cho Claude Code, Gemini CLI không cần phần này.
+
+Khi dùng làm prompt cho `@generalist`, **chỉ lấy nội dung bên dưới dòng `---` thứ hai**:
+
+```
+# ví dụ: .claude/agents/coder.md
+---                          ← BỎ QUA từ đây
+name: "coder"
+model: sonnet
+...
+---                          ← đến đây (không bao gồm)
+                             ↓ Lấy từ đây trở xuống làm prompt
+ALWAYS use #context7 MCP Server...
+```
+
+**Quy trình:**
+1. Đọc `.claude/agents/<agent-name>.md`
+2. Bỏ phần frontmatter (từ dòng `---` đầu đến dòng `---` thứ hai)
+3. Gọi `@generalist` với phần nội dung còn lại làm prompt
 
 ### Parallel dispatch
 

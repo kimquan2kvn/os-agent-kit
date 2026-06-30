@@ -24,13 +24,28 @@ multi_agent = true
 
 ## Agents trong Codex
 
-Codex không dùng `.claude/agents/` directory. Thay vào đó, đọc nội dung từ `.claude/agents/<agent-name>.md` và spawn agent với prompt đó:
+Codex không dùng `.claude/agents/` directory. Các file trong đó có phần frontmatter YAML ở đầu (giữa hai dòng `---`) — đây là metadata dành riêng cho Claude Code.
+
+Khi dùng làm prompt cho `spawn_agent`, **chỉ lấy nội dung bên dưới dòng `---` thứ hai**:
+
+```
+# ví dụ: .claude/agents/planner.md
+---                          ← BỎ QUA từ đây
+name: "planner"
+model: sonnet
+...
+---                          ← đến đây (không bao gồm)
+                             ↓ Lấy từ đây trở xuống làm prompt
+# Planning Agent
+You create plans. You do NOT write code.
+...
+```
 
 | Khi muốn dùng agent | Codex equivalent |
 |---------------------|-----------------|
-| `coder` agent | `spawn_agent` với prompt từ `.claude/agents/coder.md` |
-| `planner` agent | `spawn_agent` với prompt từ `.claude/agents/planner.md` |
-| `reviewer` agent | `spawn_agent` với prompt từ `.claude/agents/reviewer.md` |
+| `coder` agent | `spawn_agent` với prompt = body của `.claude/agents/coder.md` |
+| `planner` agent | `spawn_agent` với prompt = body của `.claude/agents/planner.md` |
+| `reviewer` agent | `spawn_agent` với prompt = body của `.claude/agents/reviewer.md` |
 
 ## Environment Detection
 
