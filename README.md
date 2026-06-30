@@ -1,3 +1,7 @@
+# team workflow
+
+<img width="578" height="630" alt="team-workflow" src="https://github.com/user-attachments/assets/a6f6c613-b71a-4022-9220-5d82fbd3bbc7" />
+
 # os-agent-kit
 
 Bộ agent config và workflow templates được extract từ dự án **B2B Login to Access**, dùng để bootstrap AI agent cho project mới trong team BSS.
