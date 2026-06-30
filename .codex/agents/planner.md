@@ -52,7 +52,7 @@ docs/
 
 - Tìm existing patterns trong codebase qua codegraph
 - Đối chiếu với docs trong `docs/`
-- Xác nhận constraint từ `.claude/CLAUDE.md` (Hard Rules, Module Map)
+- Xác nhận constraint từ `AGENTS.md` (Hard Rules, Module Map)
 
 ### Step 4 — Xem xét edge cases
 

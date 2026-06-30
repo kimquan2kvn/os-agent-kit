@@ -52,7 +52,7 @@ docs/
 
 - Tìm existing patterns trong codebase qua codegraph
 - Đối chiếu với docs trong `docs/`
-- Xác nhận constraint từ `.claude/CLAUDE.md` bằng `read_file(".claude/CLAUDE.md")` (Hard Rules, Module Map)
+- Xác nhận constraint từ `GEMINI.md` bằng `read_file("GEMINI.md")` (Hard Rules, Module Map)
 
 ### Step 4 — Xem xét edge cases
 
