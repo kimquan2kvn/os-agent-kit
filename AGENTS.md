@@ -2,8 +2,6 @@
 
 Repo này là bộ agent config được extract từ dự án **B2B Login to Access**, dùng để bootstrap AI agent cho project mới trong team BSS.
 
-> **Codex users:** Đọc `references/codex-tools.md` để biết cách map tool names từ Claude Code sang Codex.
-
 ---
 
 ## Đọc theo thứ tự này trước khi làm bất cứ việc gì
@@ -12,19 +10,18 @@ Repo này là bộ agent config được extract từ dự án **B2B Login to Ac
 2. `docs/README.md` — index toàn bộ business & technical docs
 3. `docs/technical/be/` — technical docs cho backend features
 4. `TEAM_STATUS.md` — ai đang làm gì, branch nào
-5. `references/codex-tools.md` — tool mapping cho Codex
 
 ---
 
 ## Agents
 
-Codex không load `.claude/agents/` tự động. Khi cần dùng agent, đọc file instructions và spawn với prompt tương ứng:
+Agent files cho Codex nằm trong `.codex/agents/`. Đọc file tương ứng và dùng nội dung làm prompt khi `spawn_agent`:
 
 | Agent | File | Khi nào dùng |
 |-------|------|-------------|
-| `coder` | `.claude/agents/coder.md` | Viết code, follow coding conventions |
-| `planner` | `.claude/agents/planner.md` | Lập kế hoạch implementation trước khi code |
-| `reviewer` | `.claude/agents/reviewer.md` | Review code hoặc MR |
+| `coder` | `.codex/agents/coder.md` | Viết code, follow coding conventions |
+| `planner` | `.codex/agents/planner.md` | Lập kế hoạch implementation trước khi code |
+| `reviewer` | `.codex/agents/reviewer.md` | Review code hoặc MR |
 
 Bật multi-agent: thêm `[features] multi_agent = true` vào `~/.codex/config.toml`
 
@@ -34,14 +31,10 @@ Bật multi-agent: thêm `[features] multi_agent = true` vào `~/.codex/config.t
 
 ```
 os-agent-kit/
-├── .claude/           ← Agent config: CLAUDE.md, agents, skills
+├── .claude/           ← Claude Code: CLAUDE.md, agents/, skills/
+├── .gemini/           ← Gemini CLI: agents/
+├── .codex/            ← Codex: agents/
 ├── docs/              ← Business & technical documentation
-│   ├── business/      ← User-facing features và business logic
-│   ├── technical/     ← Architecture và technical specs
-│   └── plans/         ← Feature plans đã viết sẵn
-├── references/        ← Tool mapping cho từng AI platform
-│   ├── gemini-tools.md
-│   └── codex-tools.md
 ├── templates/         ← Templates cho feature workflow
 ├── hooks/             ← Git hooks
 ├── AGENTS.md          ← File này (entry point cho Codex)
