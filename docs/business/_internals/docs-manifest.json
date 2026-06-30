@@ -1,0 +1,135 @@
+{
+  "app": "b2b-lock",
+  "generated_from": "page frontmatter",
+  "repos": [
+    "b2b-login-access-management-cms",
+    "b2b-login-access-management-api",
+    "login-api-v2",
+    "b2b-login-access-management-script"
+  ],
+  "db": "login_to_access_pages (MySQL 8.0)",
+  "generations": { "v1": "legacy (frontend/ + b2b-login-access-management-api)", "v2": "current (client/ + login-api-v2)" },
+  "retrieval": {
+    "facets": ["feature", "category", "page_type", "audience", "abbrev"],
+    "relations_file": "_internals/relations.json",
+    "public_excludes": ["audience:engineer", "_internals/**", "_raw-qa/**"]
+  },
+  "features": {
+    "locks": {
+      "abbrev": "LTAP",
+      "category": "locks",
+      "pages": ["locks/locks.md", "locks/set-up-locks.md", "locks/conditions-reference.md", "locks/on-the-storefront.md"],
+      "internals": ["_internals/locks-internals.md"],
+      "metafield_keys": ["login.configs", "bss_ltap.hide-accelerated-checkout", "bss_ltap.hide-section-configs", "bss-login-configs.hide-cart"],
+      "source_refs": { "repos": ["login-api-v2", "b2b-login-access-management-cms", "b2b-login-access-management-script"], "symbols": ["Rules", "Keys", "Conditions", "RuleService", "config-header.liquid"] }
+    },
+    "pricing": {
+      "abbrev": "LTSP",
+      "category": "pricing",
+      "pages": ["pricing/pricing.md", "pricing/set-up-pricing.md", "pricing/on-the-storefront.md"],
+      "internals": ["_internals/pricing-internals.md"],
+      "metafield_keys": [],
+      "source_refs": { "repos": ["b2b-login-access-management-api", "b2b-login-access-management-script"], "symbols": ["ltsp", "wrapPricePrefix", "wrapPriceSuffix", "bss-ltsp-v2.min.js"] }
+    },
+    "checkout-lock": {
+      "category": "checkout-lock",
+      "pages": ["checkout-lock/checkout-lock.md", "checkout-lock/purchase-validation.md", "checkout-lock/payment-customization.md", "checkout-lock/delivery-customization.md"],
+      "internals": ["_internals/checkout-lock-internals.md"],
+      "metafield_keys": ["app:cart-checkout-validation.function-configuration", "$app:payment-customization.configs", "$app:delivery-customization.configs"],
+      "source_refs": { "repos": ["b2b-login-access-management-script", "login-api-v2"], "symbols": ["cart.validations.generate.run", "cart.payment-methods.transform.run", "cart.delivery-options.transform.run"] }
+    },
+    "force-login": {
+      "abbrev": "FL", "category": "legacy-restrictions",
+      "pages": ["legacy-restrictions/force-login.md"],
+      "internals": ["_internals/legacy-restrictions-internals.md"],
+      "metafield_keys": [],
+      "source_refs": { "repos": ["b2b-login-access-management-api", "b2b-login-access-management-cms"], "symbols": ["forceLogin", "uploadFLFilesToTheme"] }
+    },
+    "passcode": {
+      "abbrev": "PC", "category": "legacy-restrictions",
+      "pages": ["legacy-restrictions/passcode.md"],
+      "internals": ["_internals/legacy-restrictions-internals.md"],
+      "metafield_keys": [],
+      "source_refs": { "repos": ["b2b-login-access-management-api"], "symbols": ["passcode", "advanced_passcode_settings"] }
+    },
+    "secret-link": {
+      "abbrev": "SL", "category": "legacy-restrictions",
+      "pages": ["legacy-restrictions/secret-link.md"],
+      "internals": ["_internals/legacy-restrictions-internals.md"],
+      "metafield_keys": [],
+      "source_refs": { "repos": ["b2b-login-access-management-api"], "symbols": ["secretLink", "sl-token"] }
+    },
+    "subscribe-to-access": {
+      "abbrev": "SNTAP", "category": "legacy-restrictions",
+      "pages": ["legacy-restrictions/subscribe-to-access.md"],
+      "internals": ["_internals/legacy-restrictions-internals.md"],
+      "metafield_keys": [],
+      "source_refs": { "repos": ["b2b-login-access-management-api"], "symbols": ["sntap", "bss-newsletter-email", "createEmailSubscribe"] }
+    },
+    "manual-locking": {
+      "abbrev": "ML", "category": "legacy-restrictions",
+      "pages": ["legacy-restrictions/manual-locking.md"],
+      "internals": ["_internals/legacy-restrictions-internals.md"],
+      "metafield_keys": [],
+      "source_refs": { "repos": ["b2b-login-access-management-api", "b2b-login-access-management-cms"], "symbols": ["manualLocking", "bss-ltap-ml-conditions.liquid"] }
+    },
+    "hide-accelerated-checkout": {
+      "category": "legacy-restrictions",
+      "pages": ["legacy-restrictions/hide-accelerated-checkout.md"],
+      "internals": [],
+      "metafield_keys": ["bss_ltap.hide-accelerated-checkout"],
+      "source_refs": { "repos": ["b2b-login-access-management-script"], "symbols": ["window.Login.bssAcceleratedCheckoutConfig", "bss-hide-accelerated-checkout.min.js"] }
+    },
+    "reports-and-analytics": {
+      "category": "analytics-and-settings",
+      "pages": ["analytics-and-settings/reports-and-analytics.md"],
+      "internals": [],
+      "metafield_keys": [],
+      "source_refs": { "repos": ["login-api-v2", "b2b-login-access-management-cms"], "symbols": ["Analytic", "Behavior", "NewAnalyticsPanel"] }
+    },
+    "passcode-requests": {
+      "category": "analytics-and-settings",
+      "pages": ["analytics-and-settings/passcode-requests.md"],
+      "internals": [],
+      "metafield_keys": [],
+      "source_refs": { "repos": ["login-api-v2", "b2b-login-access-management-cms"], "symbols": ["PasscodeRequest", "UsageHistoryV2"] }
+    },
+    "settings-and-translations": {
+      "category": "analytics-and-settings",
+      "pages": ["analytics-and-settings/settings-and-translations.md"],
+      "internals": [],
+      "metafield_keys": [],
+      "source_refs": { "repos": ["login-api-v2", "b2b-login-access-management-cms"], "symbols": ["Config", "theme-installations", "upload_target"] }
+    },
+    "onboarding-and-agreement": {
+      "category": "analytics-and-settings",
+      "pages": ["analytics-and-settings/onboarding-and-agreement.md"],
+      "internals": [],
+      "metafield_keys": [],
+      "source_refs": { "repos": ["login-api-v2", "b2b-login-access-management-cms"], "symbols": ["Onboarding", "active_agreement"] }
+    },
+    "plans-and-pricing": {
+      "category": "analytics-and-settings",
+      "pages": ["analytics-and-settings/plans-and-pricing.md"],
+      "internals": [],
+      "metafield_keys": [],
+      "source_refs": { "repos": ["login-api-v2", "b2b-login-access-management-cms"], "symbols": ["plan_code", "PlanCheck", "getShopifyPlan"] }
+    }
+  },
+  "reference_pages": [
+    "reference/settings-and-values-glossary.md",
+    "reference/metafield-contracts.md",
+    "reference/feature-compatibility-matrix.md"
+  ],
+  "faqs": [
+    "use-cases-and-faqs/faqs/changed-setting-storefront-unchanged.md",
+    "use-cases-and-faqs/faqs/dont-see-app-on-storefront.md",
+    "use-cases-and-faqs/faqs/ip-region-lock-not-working.md",
+    "use-cases-and-faqs/faqs/uninstall-leftover-theme-code.md"
+  ],
+  "use_cases": [
+    "use-cases-and-faqs/use-cases/wholesale-login-to-see-price.md",
+    "use-cases-and-faqs/use-cases/members-only-store.md"
+  ],
+  "architecture": "_internals/architecture-overview.md"
+}

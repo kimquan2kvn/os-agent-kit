@@ -1,0 +1,21 @@
+#!/bin/bash
+# 1. Chặn push thẳng lên main
+# 2. Warning nếu TEAM_STATUS.md chưa được update trong ngày
+
+BRANCH_NAME=$(git symbolic-ref --short HEAD 2>/dev/null)
+
+# Chặn push thẳng lên main
+if [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == "master" ]]; then
+  echo "❌ BLOCKED: Không được push thẳng lên '$BRANCH_NAME'."
+  echo "   → Hãy tạo Pull Request thay vì push trực tiếp."
+  exit 1
+fi
+
+# Warning nếu TEAM_STATUS.md chưa update trong 1 ngày
+UPDATED_TODAY=$(git log --since="1 day ago" --name-only --pretty=format: | grep -c "TEAM_STATUS.md")
+if [[ "$UPDATED_TODAY" -eq 0 ]]; then
+  echo "⚠️  WARNING: TEAM_STATUS.md chưa được cập nhật trong 24 giờ qua."
+  echo "   → Nhớ update TEAM_STATUS.md để team biết bạn đang làm gì."
+fi
+
+exit 0

@@ -1,0 +1,16 @@
+{
+  "locks": { "stacks": ["pricing", "checkout-lock", "hide-accelerated-checkout"], "precedes": [], "conflicts": ["force-login", "passcode", "secret-link", "subscribe-to-access", "manual-locking"], "requires_setting": ["settings-and-translations"] },
+  "pricing": { "stacks": ["locks", "checkout-lock", "hide-accelerated-checkout"], "precedes": [], "conflicts": [], "requires_setting": ["settings-and-translations"] },
+  "checkout-lock": { "stacks": ["locks", "pricing"], "precedes": [], "conflicts": [], "requires_setting": ["plans-and-pricing"] },
+  "force-login": { "stacks": ["passcode", "secret-link", "subscribe-to-access", "manual-locking"], "precedes": ["passcode", "secret-link"], "conflicts": ["locks"], "requires_setting": [] },
+  "passcode": { "stacks": ["force-login", "secret-link"], "precedes": [], "conflicts": ["locks"], "requires_setting": ["passcode-requests"] },
+  "secret-link": { "stacks": ["force-login", "passcode"], "precedes": [], "conflicts": ["locks"], "requires_setting": [] },
+  "subscribe-to-access": { "stacks": ["force-login"], "precedes": [], "conflicts": ["locks"], "requires_setting": [] },
+  "manual-locking": { "stacks": ["force-login"], "precedes": [], "conflicts": ["locks"], "requires_setting": [] },
+  "hide-accelerated-checkout": { "stacks": ["locks", "pricing"], "precedes": [], "conflicts": [], "requires_setting": [] },
+  "passcode-requests": { "stacks": ["passcode", "locks"], "precedes": [], "conflicts": [], "requires_setting": ["settings-and-translations"] },
+  "reports-and-analytics": { "stacks": ["locks"], "precedes": [], "conflicts": [], "requires_setting": [] },
+  "settings-and-translations": { "stacks": ["locks", "pricing"], "precedes": [], "conflicts": [], "requires_setting": [] },
+  "onboarding-and-agreement": { "stacks": [], "precedes": ["locks"], "conflicts": [], "requires_setting": [] },
+  "plans-and-pricing": { "stacks": [], "precedes": [], "conflicts": [], "requires_setting": [] }
+}

@@ -1,0 +1,15 @@
+#!/bin/bash
+# Auto prefix commit message với tên feature lấy từ branch name
+# Ví dụ: branch "feature/payment-rule" → "[payment-rule] your message"
+
+COMMIT_MSG_FILE=$1
+BRANCH_NAME=$(git symbolic-ref --short HEAD 2>/dev/null)
+
+if [[ "$BRANCH_NAME" =~ ^feature/(.+)$ ]]; then
+  FEATURE_NAME="${BASH_REMATCH[1]}"
+  CURRENT_MSG=$(cat "$COMMIT_MSG_FILE")
+  # Chỉ prefix nếu chưa có prefix
+  if [[ "$CURRENT_MSG" != \[* ]]; then
+    echo "[$FEATURE_NAME] $CURRENT_MSG" > "$COMMIT_MSG_FILE"
+  fi
+fi

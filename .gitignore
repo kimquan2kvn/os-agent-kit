@@ -1,0 +1,5 @@
+.DS_Store
+*.Zone.Identifier
+.env
+.env.*
+node_modules/
